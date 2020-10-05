@@ -7,6 +7,14 @@ class Product {
     private float $price;
     private int $availableQuantity;
     
+    /**
+     * 
+     * @param Cart $cart
+     * @param int $quantity
+     * @return CartItem
+     * @throws \Exception
+     */
+    
     function __construct(int $id, string $title, float $price, int $availableQuantity) {
         $this->id = $id;
         $this->title = $title;
@@ -49,6 +57,15 @@ class Product {
     public function addToCart(Cart $cart, int $quantity) {
         
         return $cart->addProduct($this, $quantity);
+        
+    }
+    
+    /**
+     * @param Cart $cart
+     */
+    public function removeFromCart(Cart $cart) {
+        
+        return $cart->removeProduct($this);
         
     }
 }

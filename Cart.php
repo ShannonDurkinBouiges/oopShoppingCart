@@ -17,7 +17,7 @@ class Cart {
         $cartItem = $this->findCartItem($product->getId());
         if ($cartItem === null) {
             $cartItem = new CartItem($product, 0);
-            $this->items[] = $cartItem;
+            $this->items[$product->getId()] = $cartItem;
         }
         $cartItem->increaseQuantity($quantity);
         return $cartItem;
@@ -25,29 +25,55 @@ class Cart {
     
     private function findCartItem(int $productId) {
         
-        foreach ($this->items as $item) {
-            if ($items->getProduct()->getId() === $productId) {
-                return $item->getProduct();
-            }
-        }
-        return null;
+        return $this->items[$productId] ?? null; //or below
+//        foreach ($this->items as $item) {
+//            if ($item->getProduct()->getId() === $productId) {
+//                return $item->getProduct();
+//            }
+//        }
+//        return null;
     }
     
+    /**
+     * 
+     * @param Product $product
+     */
     public function removeProduct(Product $product) {
         
+        unset($this->items[$product->getId()]);
+//        foreach ($this->items as $index => $item) {
+//            if ($item->getProduct()->getId() === $product->getId()) {
+//                unset($this->items[$index]);
+//                break;
+//            }
+//        }
     }
     
+    /**
+     * 
+     * @return int
+     */
     public function getTotalQuantity() {
         
         $sum = 0;
         foreach ($this->items as $item) {
-            $sum += $tem->getQuantity();
+            $sum += $item->getQuantity();
         }
         return $sum;
     }
     
+    /**
+     * 
+     * @return float
+     */
     public function getTotalSum() {
         
+        $totalSum = 0;
+        foreach ($this->items as $item) {
+            $totalSum += $item->getQuantity() * $item->getProduct()->getPrice();
+        }
+        
+        return $totalSum;
     }
 }
 

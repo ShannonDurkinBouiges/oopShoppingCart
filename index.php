@@ -12,17 +12,22 @@ $cart = new Cart();
 $cartItem1 = $cart->addProduct($product1, 1);
 $cartItem2 = $product2->addToCart($cart, 1);
 
-echo "Number of items in cart: ";
-echo $cart->getTotalQuantity();
-echo "Total price of items in cart: ";
-echo $cart->getTotalSum();
+echo "Number of items in cart: ".PHP_EOL;
+echo $cart->getTotalQuantity().PHP_EOL;
+echo "Total price of items in cart: ".PHP_EOL;
+echo $cart->getTotalSum().PHP_EOL;
 
 $cartItem2->increaseQuantity();
 $cartItem2->increaseQuantity();
 
-echo "Number of items in cart: ";
-echo $cart->getTotalQuantity();
+echo "Number of items in cart: ".PHP_EOL;
+echo $cart->getTotalQuantity().PHP_EOL;
 
-echo "Total price of items in cart: ";
-echo $cart->getTotalSum();
+echo "Total price of items in cart: ".PHP_EOL;
+echo $cart->getTotalSum().PHP_EOL;
+
+$cart->removeProduct($product1);
+
+echo "Number of items in cart: ".PHP_EOL;
+echo $cart->getTotalQuantity().PHP_EOL;
 
