@@ -4,6 +4,14 @@ class Cart {
     
     private array $items = [];
     
+    /**
+     * 
+     * @param Product $product
+     * @param int $quantity
+     * @return \CartItem
+     * @throws \Exception
+     */
+    
     public function addProduct(Product $product, int $quantity) {
         
         $cartItem = $this->findCartItem($product->getId());
@@ -12,6 +20,7 @@ class Cart {
             $this->items[] = $cartItem;
         }
         $cartItem->increaseQuantity($quantity);
+        return $cartItem;
     }
     
     private function findCartItem(int $productId) {

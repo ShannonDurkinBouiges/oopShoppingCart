@@ -48,7 +48,7 @@ class Product {
     
     public function addToCart(Cart $cart, int $quantity) {
         
-        $cart->addProduct($this, $quantity);
+        return $cart->addProduct($this, $quantity);
         
     }
 }
